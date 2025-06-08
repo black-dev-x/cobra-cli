@@ -1,16 +1,15 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
+	"database/sql"
 	"os"
 
+	"github.com/black-dev-x/cobra-cli/database"
 	"github.com/spf13/cobra"
 )
-
-
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -36,6 +35,19 @@ func Execute() {
 	}
 }
 
+func GetDb() *sql.DB {
+	db, err := sql.Open("sqlite3", "./data.db")
+	if err != nil {
+		panic(err)
+	}
+	return db
+}
+func GetCategoryDB() *database.CategoryDB {
+	db := GetDb()
+	categoryDb := database.NewCategoryDB(db)
+	return categoryDb
+}
+
 func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
@@ -47,5 +59,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-

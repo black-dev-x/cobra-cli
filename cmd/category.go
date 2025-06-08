@@ -1,9 +1,8 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +14,27 @@ var categoryCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 	},
+	PreRun: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Preparing to execute category command...")
+	},
+	// PostRun: func(cmd *cobra.Command, args []string) {
+	// 	fmt.Println("Category command execution completed.")
+	// },
+	// RunE: func(cmd *cobra.Command, args []string) error {
+	// 	// This is where you can handle errors if needed
+	// 	fmt.Println("category command executed")
+	// 	return nil
+	// },
+	// PreRunE: func(cmd *cobra.Command, args []string) error {
+	// 	// This is where you can handle errors before running the command
+	// 	fmt.Println("Preparing to execute category command with error handling...")
+	// 	return nil
+	// },
+	// PostRunE: func(cmd *cobra.Command, args []string) error {
+	// 	// This is where you can handle errors after running the command
+	// 	fmt.Println("Category command execution completed with error handling.")
+	// 	return nil
+	// },
 }
 
 func init() {
